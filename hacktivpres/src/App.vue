@@ -14,7 +14,7 @@ import { mapState } from 'vuex'
 export default {
   computed: {
     ...mapState([
-      ''
+      'login'
     ])
   }
 }
@@ -40,5 +40,9 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+a:hover{
+  cursor: pointer;
 }
 </style>

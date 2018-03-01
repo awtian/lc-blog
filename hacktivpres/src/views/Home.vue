@@ -1,33 +1,30 @@
 <template>
   <div class="home">
-    <h1> Latest Blogs </h1>
+    <a @click="loadAll"><h1> Latest Blogs </h1></a>
     <div class="container articles">
       <div class="columns is-multiline" v-for="post in posts" :key="post._id"> 
-        <div class="column">
+        <div class="column article">
            <div class="card article">
             <div class="card-content">
               <div class="media">
                 <div class="media-content has-text-centered">
                   <p class="title article-title">{{post.title}}</p>
                   <p class="subtitle is-6 article-subtitle">
-                    <a>by {{post.creator}}</a>
+                    <a @click="loadCreator(post.creator)">by {{post.creator}}</a><br />
+                    <a @click="loadCategory(post.category)"> Category: {{post.category}}</a>
                   </p>
                 </div>
               </div>
             <div class="content article-body">
-                <img :src="post.image" /> <br />
-                <p>Non arcu risus quis varius quam quisque. Dictum varius duis at consectetur lorem. Posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper. </p>
-                <p>Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices. In hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit. Accumsan lacus vel facilisis volutpat. Non sodales neque sodales ut etiam. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus.</p>
-                <h3 class="has-text-centered">Feugiat sed lectus vestibulum mattis.</h3>
-                <p> Molestie ac feugiat sed lectus vestibulum. Feugiat sed lectus vestibulum mattis. Volutpat diam ut venenatis tellus in metus vulputate. Feugiat in fermentum posuere urna nec. Pharetra convallis posuere morbi leo urna molestie at. Accumsan lacus vel facilisis volutpat est velit egestas. Fermentum leo vel orci porta. Faucibus interdum posuere lorem ipsum.
-                </p>
+                <img :src="post.image" class="image is-16by9"/> <br />
+                <p>{{post.content}} </p>
               </div>
             </div>
           </div>
-          <h2>{{post.title}}</h2>
+          <!-- <h2>{{post.title}}</h2>
           {{post.creator}} <br/>
           <img :src="post.image" /> <br />
-          {{post.content}}
+          {{post.content}} -->
        </div>
       </div>
     </div>
@@ -50,7 +47,9 @@ export default {
   },
   methods: {
     ...mapActions([
-      'loadAll'
+      'loadAll',
+      'loadCreator',
+      'loadCategory'
     ])
   },
   created () {
