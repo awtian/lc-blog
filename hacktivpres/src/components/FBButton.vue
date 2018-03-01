@@ -19,9 +19,13 @@ export default {
   },
   methods: {
     onSignInSuccess (response) {
-      FB.api('/me', dude => {
-        console.log(`Good to see you, ${dude.name}.`)
-      })
+      this.$db.post('/users/',{token: response.authResponse.accessToken})
+        .then(({data})=>{
+          localStorage.auth = data.jwt
+          localStorage.user = data.user.email
+          this.$store.commit('SET_USER', localStorage.user)
+          this.$router.push('/')
+          })
     },
     onSignInError (error) {
       console.log('OH NOES', error)

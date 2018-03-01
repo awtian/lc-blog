@@ -2,7 +2,8 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link v-if="login" to="/about">New Post</router-link>
+      <router-link v-if="login" to="/newpost">New Post</router-link>&nbsp;
+      <a v-if="login" @click="logout">| Logout</a>
       <router-link v-else to="/login">Login</router-link>
     </div>
     <router-view/>
@@ -10,11 +11,16 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   computed: {
     ...mapState([
       'login'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'logout'
     ])
   }
 }
@@ -44,5 +50,8 @@ export default {
 
 a:hover{
   cursor: pointer;
+}
+a {
+  text-decoration: underline;
 }
 </style>

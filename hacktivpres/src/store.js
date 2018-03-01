@@ -14,6 +14,9 @@ export default new Vuex.Store({
   mutations: {
     SET_POSTS (state, payload) {
       state.posts = payload
+    },
+    SET_USER (state, payload) {
+      state.login = payload
     }
   },
   actions: {
@@ -37,6 +40,10 @@ export default new Vuex.Store({
           commit('SET_POSTS', data.reverse())
         })
         .catch(err => console.log(err))
+    },
+    logout ({commit}) {
+      localStorage.clear()
+      commit('SET_USER', false)
     }
   }
 })

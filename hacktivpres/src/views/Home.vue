@@ -54,6 +54,7 @@ export default {
   },
   created () {
     this.loadAll()
+    this.$store.commit('SET_USER', localStorage.user)
   },
   components: {
     HelloWorld
