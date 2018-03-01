@@ -2,12 +2,23 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link v-if="login" to="/about">New Post</router-link>      
+      <router-link v-if="login" to="/about">New Post</router-link>
       <router-link v-else to="/login">Login</router-link>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+import { mapState } from 'vuex'
+export default {
+  computed: {
+    ...mapState([
+      ''
+    ])
+  }
+}
+</script>
 
 <style>
 #app {

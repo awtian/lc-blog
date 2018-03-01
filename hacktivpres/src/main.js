@@ -7,7 +7,7 @@ import FBSignInButton from 'vue-facebook-signin-button'
 import swal from 'sweetalert'
 import axios from 'axios'
 
-Vue.prototype.$db = axios.create({baseURL:'http://localhost:3000'})
+Vue.prototype.$db = axios.create({baseURL: 'http://localhost:3000'})
 Vue.prototype.$swal = swal
 Vue.use(FBSignInButton)
 Vue.use(Buefy)
