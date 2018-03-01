@@ -8,8 +8,8 @@ router.get('/', articlesController.getAll);
 router.post('/', authanddecode, articlesController.create)
 router.put('/:id', authanddecode, articlesController.update)
 router.delete('/:id', authanddecode, articlesController.delete)
-router.get('/author', articlesController.getByAuthor)
-router.get('/category', articlesController.getByCategory)
+router.get('/author/:search', articlesController.getByAuthor)
+router.get('/category/:search', articlesController.getByCategory)
 
 
 module.exports = router;

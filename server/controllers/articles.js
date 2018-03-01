@@ -38,13 +38,13 @@ class articleController {
   }
 
   static getByAuthor (req, res) {
-    articleModel.find({creator: req.headers.search})
+    articleModel.find({creator: req.params.search})
       .then(data => res.send(data))
       .catch(err => console.log(err))
   }
 
   static getByCategory (req, res) {
-    articleModel.find({category: req.headers.search})
+    articleModel.find({category: req.params.search})
       .then(data => res.send(data))
       .catch(err => console.log(err))
   }

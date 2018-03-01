@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import router from './router'
+import swal from 'sweetalert'
 
 const db = axios.create({baseURL: 'http://localhost:3000'})
 
@@ -17,6 +19,9 @@ export default new Vuex.Store({
     },
     SET_USER (state, payload) {
       state.login = payload
+    },
+    ADD_POST (state, payload) {
+      state.posts.unshift(payload)
     }
   },
   actions: {
@@ -44,6 +49,21 @@ export default new Vuex.Store({
     logout ({commit}) {
       localStorage.clear()
       commit('SET_USER', false)
+    },
+    addPost ({commit}, payload) {
+      db.post('/articles', payload, {headers: {token: localStorage.auth}})
+        .then(({data}) => {
+          commit('ADD_POST', data)
+          swal("Yatta!!", "You've submitted new article", "success");
+          router.push('/')
+        })
+    },
+    deleteArt ({commit, dispatch}, id) {
+      db.delete(`/articles/${id}`, {headers: {token: localStorage.auth}})
+      .then(({data}) => {
+        dispatch('loadAll')
+        swal("Yatta!!", "You deleted the article", "success");
+      })
     }
   }
 })

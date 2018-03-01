@@ -10,6 +10,7 @@
                 <div class="media-content has-text-centered">
                   <p class="title article-title">{{post.title}}</p>
                   <p class="subtitle is-6 article-subtitle">
+                    <button @click="deleteArt(post._id)" v-if="login===post.creator"> delete </button><br />
                     <a @click="loadCreator(post.creator)">by {{post.creator}}</a><br />
                     <a @click="loadCategory(post.category)"> Category: {{post.category}}</a>
                   </p>
@@ -42,14 +43,16 @@ export default {
   name: 'home',
   computed: {
     ...mapState([
-      'posts'
+      'posts',
+      'login'
     ])
   },
   methods: {
     ...mapActions([
       'loadAll',
       'loadCreator',
-      'loadCategory'
+      'loadCategory',
+      'deleteArt'
     ])
   },
   created () {
