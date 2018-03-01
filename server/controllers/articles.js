@@ -21,23 +21,30 @@ class articleController {
   }
 
   static update (req, res) {
-    articleModel.findOneAndUpdate({_id: req.params.id}, { $set: {
+    articleModel.findOneAndUpdate({_id: req.params.id, author: req.params.email}, { $set: {
       title: req.body.title,
       content: req.body.content,
-      image: req.body.image
+      image: req.body.image,
+      category: req.body.category
     }}, {new:true})
       .then(data => res.send(data))
       .catch(error => res.send(error))
   }
+  
+  static delete (req, res) {
+    articleModel.findOneAndRemove({_id: req.params.id, author: req.params.email})
+      .then(data => res.send({deleted: req.params.id}))
+      .catch(error => res.send(error))
+  }
 
-  static getByAuthor (req,res) {
-    articleModel.find({creator: req.body.author})
+  static getByAuthor (req, res) {
+    articleModel.find({creator: req.headers.search})
       .then(data => res.send(data))
       .catch(err => console.log(err))
   }
 
-  static getByCategory (req,res) {
-    articleModel.find({category: req.body.category})
+  static getByCategory (req, res) {
+    articleModel.find({category: req.headers.search})
       .then(data => res.send(data))
       .catch(err => console.log(err))
   }
