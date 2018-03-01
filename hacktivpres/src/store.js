@@ -5,12 +5,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-
+    posts: []
   },
   mutations: {
 
   },
   actions: {
-
+    loadPost ({commit}) {
+      this.$db.get('/articles')
+    }
   }
 })
