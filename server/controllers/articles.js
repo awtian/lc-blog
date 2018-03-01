@@ -7,6 +7,12 @@ class articleController {
       .then(data => res.send(data))
       .catch(err => console.log(err))
   }
+  
+  static getOne (req,res) {
+    articleModel.findOne({_id: req.params.id})
+      .then(data => res.send(data))
+      .catch(error => res.send(error))
+  }
 
   static create (req,res) {
     articleModel.create({

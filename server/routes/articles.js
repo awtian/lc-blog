@@ -7,6 +7,7 @@ const authanddecode = require('../helper/authanddecode')
 router.get('/', articlesController.getAll);
 router.post('/', authanddecode, articlesController.create)
 router.put('/:id', authanddecode, articlesController.update)
+router.get('/:id', articlesController.getOne);
 router.delete('/:id', authanddecode, articlesController.delete)
 router.get('/author/:search', articlesController.getByAuthor)
 router.get('/category/:search', articlesController.getByCategory)
