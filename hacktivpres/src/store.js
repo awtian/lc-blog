@@ -64,6 +64,9 @@ export default new Vuex.Store({
         dispatch('loadAll')
         swal("Yatta!!", "You deleted the article", "success");
       })
+    },
+    edit ({commit}, id) {
+      swal("hehehe!!", "Anda belum beruntung, form belum dibuat", "error");
     }
   }
 })

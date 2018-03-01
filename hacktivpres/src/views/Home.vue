@@ -10,7 +10,8 @@
                 <div class="media-content has-text-centered">
                   <p class="title article-title">{{post.title}}</p>
                   <p class="subtitle is-6 article-subtitle">
-                    <button @click="deleteArt(post._id)" v-if="login===post.creator"> delete </button><br />
+                    <button @click="deleteArt(post._id)" v-if="login===post.creator"> delete </button>
+                    <button @click="edit" v-if="login===post.creator"> edit </button><br />
                     <a @click="loadCreator(post.creator)">by {{post.creator}}</a><br />
                     <a @click="loadCategory(post.category)"> Category: {{post.category}}</a>
                   </p>
@@ -52,7 +53,8 @@ export default {
       'loadAll',
       'loadCreator',
       'loadCategory',
-      'deleteArt'
+      'deleteArt',
+      'edit'
     ])
   },
   created () {
